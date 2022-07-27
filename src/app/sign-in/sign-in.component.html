@@ -1,0 +1,32 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar" color="primary">LOG IN</mat-toolbar>
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input matInput autofocus type="text"  placeholder="Username" formControlName="username">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" autocomplete="false" matInput placeholder="Password"  formControlName="password">
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" [color]="form.valid ? 'primary' : null">LOGIN</button>
+
+      </form>
+
+      <br>
+
+      <p> If You don't have a account yet please 
+        <a style="cursor: pointer" [routerLink]="['/sign-up']">REGISTER HERE</a></p>
+
+      <ng-container *ngIf="authError$ | async as authError">
+        <p style="color: red">{{ authError.message }}</p>
+      </ng-container>
+
+    </mat-card>
+  </div>
+</div>
+

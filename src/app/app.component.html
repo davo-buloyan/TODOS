@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <span *ngIf="authUser$ | async as authUser">{{ authUser.username }} Todos</span>
+  <span class="spacer"></span>
+
+  <ng-container *ngIf="!(isLoggedIn$ | async)">
+    <button mat-button [routerLink]="['/sign-in']" routerLinkActive="active">
+      <mat-icon>login</mat-icon> Sign In
+    </button>
+    <button mat-button [routerLink]="['/sign-up']" routerLinkActive="active">
+      <mat-icon>how_to_reg</mat-icon> Sign Up
+    </button>
+  </ng-container>
+
+  <button *ngIf="isLoggedIn$ | async" mat-button (click)="onLogOut()">
+    <mat-icon>logout</mat-icon> Sign Out
+  </button>
+</mat-toolbar>
+
+<div class="content-container">
+  <router-outlet></router-outlet>
+</div>

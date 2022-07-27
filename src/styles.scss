@@ -1,0 +1,27 @@
+@use '@angular/material' as mat;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@include mat.core();
+
+$todos-primary: mat.define-palette(mat.$cyan-palette);
+$todos-accent: mat.define-palette(mat.$teal-palette);
+$todos-warn: mat.define-palette(mat.$red-palette);
+
+$todos-theme: mat.define-dark-theme((
+  color: (
+    primary: $todos-primary,
+    accent: $todos-accent,
+    warn: $todos-warn,
+  ),
+));
+
+@include mat.all-component-themes($todos-theme);
+

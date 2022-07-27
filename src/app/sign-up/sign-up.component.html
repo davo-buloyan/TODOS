@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar" color="primary">REGISTER</mat-toolbar>
+    <mat-card>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput autofocus type="email" placeholder="Email" formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="form.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" autocomplete="new-password" formControlName="password">
+          <mat-hint>Choose a password of 4 digits</mat-hint>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <ng-container *ngIf="authError$ | async as authError">
+          <p style="color: red">{{ authError.message }}</p>
+        </ng-container>
+
+        <div class="sign-up-actions">
+          <button mat-raised-button style="width:50%" type="submit" [color]="form.valid ? 'primary' : null">
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
